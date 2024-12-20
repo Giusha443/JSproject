@@ -4,7 +4,6 @@ import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksVies.js';
-import addrecipeView from './views/addrecipeView.js';
 import { MODAL_CLOSE_TIME } from './config.js';
 import { async } from 'regenerator-runtime';
 
@@ -82,31 +81,6 @@ const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
-const controlAddrecipe = async function (newRecipe) {
-  try {
-    //sholw spinner
-    addrecipeView.renderSpinner();
-    //Upload new recipe data
-    await model.uploadRecipe(newRecipe);
-    //Render recipe
-    recipeView.render(model.state.recipe);
-    addrecipeView.clear(); // This method will clear the spinner
-    //succsess message
-    addrecipeView.renderMessage();
-
-    //render bookmark view
-    bookmarksView.render(model.state.bookmarks);
-    //change id in url
-    window.history.pushState(null, '', `#${model.state.recipe.id}`);
-    //close from windodw
-    setTimeout(function () {
-      addrecipeView.toggleWindow();
-    }, MODAL_CLOSE_TIME * 1000);
-  } catch (err) {
-    console.error(err);
-    addrecipeView.renderError(err.message);
-  }
-};
 const init = function () {
   bookmarksView.addHendlerRender(controlBookmarks);
   recipeView.addHendlerRender(controlRecipies);
@@ -114,6 +88,5 @@ const init = function () {
   recipeView.addHendlerAddBookmark(controlAddBookmark);
   searchView.addHendlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
-  addrecipeView._addHendlerUpload(controlAddrecipe);
 };
 init();

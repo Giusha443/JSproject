@@ -76,11 +76,6 @@ class RecipeView extends View {
         </button>
       </div>
     </div>
-    <div class="recipe__user-generated ${this._data.key ? '' : 'hidden'}">
-      <svg>
-         <use href="${icons}#icon-user"></use>
-      </svg>
-    </div>
     <button class="btn--round btn--bookmark">
       <svg class="">
         <use href="${icons}#icon-bookmark${
@@ -105,16 +100,6 @@ class RecipeView extends View {
       }</span>. Please check out
       directions at their website.
     </p>
-    <a
-      class="btn--small recipe__btn"
-      href="http://thepioneerwoman.com/cooking/pasta-with-tomato-cream-sauce/"
-      target="_blank"
-    >
-      <span>Directions</span>
-      <svg class="search__icon">
-        <use href="${this._data.sourceUrl}"></use>
-      </svg>
-    </a>
   </div>`;
   }
   _generateMarkupIngredient(ing) {
