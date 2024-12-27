@@ -6,7 +6,7 @@ import paginationView from "./views/paginationView.js";
 import bookmarksView from "./views/bookmarksVies.js";
 import "core-js/stable";
 // import 'regenerator-runtime/runtime';
-
+//parcelze romaa shecvlisas axali run strut rom ar gaushva iqve reloads ushveba
 if (module.hot) {
   module.hot.accept();
 }

@@ -1,4 +1,4 @@
-import icons from 'url:../../img/icons.svg';
+import icons from "url:../../img/icons.svg";
 
 export default class View {
   _data;
@@ -9,22 +9,22 @@ export default class View {
     const markup = this._generateMarkup();
     if (!render) return markup;
     this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
   update(data) {
     this._data = data;
     const newMarkup = this._generateMarkup(); //es axla stringia da rom shevadarot DOM elementebs
     const newDom = document.createRange().createContextualFragment(newMarkup);
-    const newElements = Array.from(newDom.querySelectorAll('*'));
-    const curElements = Array.from(this._parentElement.querySelectorAll('*'));
-
+    const newElements = Array.from(newDom.querySelectorAll("*"));
+    const curElements = Array.from(this._parentElement.querySelectorAll("*"));
+    //rac sheicvala magas gadavawert sxvas ara da ar dachirdeba reload pagis
     newElements.forEach((newEl, i) => {
       const curEl = curElements[i];
       //Update change TEXT
       if (
         !newEl.isEqualNode(curEl) &&
-        newEl.firstChild?.nodeValue.trim() !== ''
+        newEl.firstChild?.nodeValue.trim() !== ""
       ) {
         curEl.textContent = newEl.textContent;
       }
@@ -37,7 +37,7 @@ export default class View {
     });
   }
   _clear() {
-    this._parentElement.innerHTML = '';
+    this._parentElement.innerHTML = "";
   }
   //Display Eror Message
   renderError(message = this._errorMessage) {
@@ -50,7 +50,7 @@ export default class View {
       <p>${message}</p>
     </div>`;
     this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
   renderSpinner() {
@@ -62,7 +62,7 @@ export default class View {
       </div>
     `;
     this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
   renderMessage(message = this._message) {
@@ -75,6 +75,6 @@ export default class View {
           <p>${message}</p>
         </div>`;
     this._clear;
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 }

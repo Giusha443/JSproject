@@ -1,6 +1,7 @@
-import { TIMEOUT_SEC } from './config.js';
+import { TIMEOUT_SEC } from "./config.js";
 
 const timeout = function (s) {
+  //drois amowurvis mere rom error amoagdeos noninfinite cylce ar iqneba
   return new Promise(function (_, reject) {
     setTimeout(function () {
       reject(new Error(`Request took too long! Timeout after ${s} second`));
@@ -12,8 +13,8 @@ export const AJAX = async function (url, uploadData = undefined) {
   try {
     const fetchPro = uploadData
       ? fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(uploadData),
         })
       : fetch(url);

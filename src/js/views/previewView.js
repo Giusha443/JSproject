@@ -1,14 +1,14 @@
-import View from './view.js';
+import View from "./view.js";
 // import icons from 'url:../../img/icons.svg';
 
 class PreviewView extends View {
-  _parentElement = '';
-
+  _parentElement = "";
+  //mtlianad pagze rom itvirtebodes
   _generateMarkup() {
     const id = window.location.hash.slice(1);
     return `<li class="preview">
             <a class="preview__link ${
-              this._data.id === id ? 'preview__link--active' : ''
+              this._data.id === id ? "preview__link--active" : ""
             }" href="#${this._data.id}">
               <figure class="preview__fig">
                 <img src="${this._data.image}" alt="Test" />
