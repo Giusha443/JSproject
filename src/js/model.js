@@ -105,37 +105,38 @@ const init = function () {
   if (storage) state.bookmarks = JSON.parse(storage);
 };
 init();
+
 const clearBookmarks = function () {
   localStorage.clear('bookmarks');
 };
 // clearBookmarks();
 
-export const uploadRecipe = async function (newRecipe) {
-  try {
-    const ingredients = Object.entries(newRecipe)
-      .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
-      .map(ing => {
-        // const ingArr = ing[1].replaceAll(' ', '').split(',');
-        const ingArr = ing[1].split(',').map(el => el.trim());
-        if (ingArr.length !== 3) throw new Error('Incorrect ingredient format');
-        const [quantity, unit, description] = ingArr;
-        return { quantity: quantity ? +quantity : null, unit, description };
-      });
-    const recipe = {
-      //ase imitom rom API gadavcet da is amis mixevdit naxavs raxan tivton ase uwreia data
-      title: newRecipe.title,
-      source_url: newRecipe.sourceUrl,
-      image_url: newRecipe.image,
-      publisher: newRecipe.publisher,
-      cooking_time: +newRecipe.cookingTime,
-      servings: +newRecipe.servings,
-      ingredients,
-    };
-    //create AJAX request
-    const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe);
-    state.recipe = createRecipeObject(data);
-    addBookMark(state.recipe);
-  } catch (err) {
-    throw err;
-  }
-};
+// export const uploadRecipe = async function (newRecipe) {
+//   try {
+//     const ingredients = Object.entries(newRecipe)
+//       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+//       .map(ing => {
+//         // const ingArr = ing[1].replaceAll(' ', '').split(',');
+//         const ingArr = ing[1].split(',').map(el => el.trim());
+//         if (ingArr.length !== 3) throw new Error('Incorrect ingredient format');
+//         const [quantity, unit, description] = ingArr;
+//         return { quantity: quantity ? +quantity : null, unit, description };
+//       });
+//     const recipe = {
+//       //ase imitom rom API gadavcet da is amis mixevdit naxavs raxan tivton ase uwreia data
+//       title: newRecipe.title,
+//       source_url: newRecipe.sourceUrl,
+//       image_url: newRecipe.image,
+//       publisher: newRecipe.publisher,
+//       cooking_time: +newRecipe.cookingTime,
+//       servings: +newRecipe.servings,
+//       ingredients,
+//     };
+//     //create AJAX request
+//     const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe);
+//     state.recipe = createRecipeObject(data);
+//     addBookMark(state.recipe);
+//   } catch (err) {
+//     throw err;
+//   }
+// };
